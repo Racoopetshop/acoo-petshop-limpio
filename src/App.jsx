@@ -5,7 +5,7 @@ export default function App() {
   const [lang, setLang] = useState('es');
 
   // CONFIGURACIÓN DE WHATSAPP
-  const phoneNumber = "3223780668"; // <-- CAMBIA ESTO POR TU NÚMERO
+  const phoneNumber = "+523223780668"; // <-- CAMBIA ESTO POR TU NÚMERO
   
   const generateWhatsAppLink = (message) => {
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
