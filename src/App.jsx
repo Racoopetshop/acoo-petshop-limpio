@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-// Agregamos más iconos: ShoppingBag, Bone, Heart, Star, CheckCircle2
-import { MessageCircle, Sparkles, ArrowRight, Globe, Menu, ShoppingBag, Bone, Heart, Star, CheckCircle2 } from 'lucide-react';
+// Agregamos iconos para el footer y reseñas: MapPin, Instagram, Facebook
+import { MessageCircle, Sparkles, ArrowRight, Globe, Menu, ShoppingBag, Bone, Heart, Star, CheckCircle2, MapPin, Instagram, Facebook } from 'lucide-react';
 
 export default function App() {
   const [lang, setLang] = useState('es');
@@ -12,7 +12,7 @@ export default function App() {
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   };
 
-  // DICCIONARIO BILINGÜE ACTUALIZADO
+  // DICCIONARIO BILINGÜE COMPLETO
   const t = {
     es: {
       nav: { home: "Inicio", catalog: "Catálogo", bar: "Delicias Bar", contact: "Contacto", order: "Hacer Pedido" },
@@ -40,6 +40,21 @@ export default function App() {
         subtitle: "El favorito de Bucerías. Arma tu mix de premios 100% naturales, deshidratados y libres de conservadores artificiales. ¡Pagas solo lo que llevas!",
         features: ["Camote y Manzana deshidratada", "Orejas y pulmón de cerdo", "Hígado de res premium", "Galletas artesanales"],
         btnOrder: "¡Quiero armar mi Mix!"
+      },
+      reviews: {
+        title: "Familias Felices",
+        subtitle: "Lo que nuestros clientes opinan sobre Racoo Petshop.",
+        items: [
+          { name: "WmWMARIANOWmW Delgado", text: "Excelente atención y productos de la más alta calidad. A mi perro le encantaron los premios del Delicias Bar, 100% naturales.", rating: 5 },
+          { name: "Valeria M.", text: "¡El mejor pet shop en Bucerías! Tienen una gran variedad de accesorios y alimentos holísticos que no encuentro en otro lado.", rating: 5 },
+          { name: "Sarah Jenkins", text: "Amazing service! The natural treats selection is great, and my dog absolutely loves them. Highly recommended.", rating: 5 }
+        ]
+      },
+      footer: {
+        desc: "Tu tienda de confianza para el bienestar integral de tus mascotas en la bahía.",
+        location: "Golden Zone, Bucerías, Nayarit",
+        links: "Enlaces Rápidos",
+        rights: "Todos los derechos reservados."
       }
     },
     en: {
@@ -68,13 +83,27 @@ export default function App() {
         subtitle: "Bucerías' favorite! Build your mix of 100% natural, dehydrated treats free of artificial preservatives. Pay only for what you take!",
         features: ["Dehydrated sweet potato & apple", "Pork ears and lung", "Premium beef liver", "Artisan pet cookies"],
         btnOrder: "I want to build my Mix!"
+      },
+      reviews: {
+        title: "Happy Families",
+        subtitle: "What our clients say about Racoo Petshop.",
+        items: [
+          { name: "WmWMARIANOWmW Delgado", text: "Excellent service and top quality products. My dog loved the treats from the Delicias Bar, 100% natural.", rating: 5 },
+          { name: "Valeria M.", text: "The best pet shop in Bucerías! They have a great variety of accessories and holistic food I can't find anywhere else.", rating: 5 },
+          { name: "Sarah Jenkins", text: "Amazing service! The natural treats selection is great, and my dog absolutely loves them. Highly recommended.", rating: 5 }
+        ]
+      },
+      footer: {
+        desc: "Your trusted shop for the comprehensive wellness of your pets in the bay.",
+        location: "Golden Zone, Bucerías, Nayarit",
+        links: "Quick Links",
+        rights: "All rights reserved."
       }
     }
   };
 
   const currentLang = t[lang];
 
-  // Función para renderizar el icono correcto desde el diccionario
   const renderIcon = (iconName) => {
     switch(iconName) {
       case 'Bone': return <Bone className="w-8 h-8 text-[#D96C4A]" />;
@@ -219,7 +248,6 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-col md:flex-row items-center gap-16">
-            {/* Texto y Beneficios */}
             <div className="flex-1 space-y-8">
               <div className="inline-flex items-center gap-2 bg-white/10 px-4 py-1.5 rounded-full text-sm font-medium text-[#F3EBE1]">
                 <Sparkles className="w-4 h-4 text-[#D96C4A]" />
@@ -255,10 +283,8 @@ export default function App() {
               </div>
             </div>
 
-            {/* Imagen Decorativa del Bar */}
             <div className="flex-1 w-full">
               <div className="relative rounded-3xl overflow-hidden aspect-square md:aspect-[4/3] bg-black/20 border border-white/10 shadow-2xl">
-                {/* Por ahora reutilizamos la foto de los tarros, luego puedes cambiarla subiendo otra a tu carpeta public */}
                 <img 
                   src="/hero-photo.jpg.webp" 
                   alt="Delicias Bar" 
@@ -271,6 +297,99 @@ export default function App() {
 
         </div>
       </section>
+
+      {/* --- SECCIÓN RESEÑAS --- */}
+      <section className="py-20 bg-[#FCFAF8]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-4xl font-extrabold mb-4">{currentLang.reviews.title}</h2>
+            <p className="text-lg text-gray-600">{currentLang.reviews.subtitle}</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {currentLang.reviews.items.map((review, index) => (
+              <div key={index} className="bg-white p-8 rounded-3xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                <div className="flex gap-1 mb-4">
+                  {[...Array(review.rating)].map((_, i) => (
+                    <Star key={i} className="w-5 h-5 fill-[#FBBF24] text-[#FBBF24]" />
+                  ))}
+                </div>
+                <p className="text-gray-700 italic mb-6">"{review.text}"</p>
+                <p className="font-bold text-[#2D3A2F]">{review.name}</p>
+                <div className="flex items-center gap-2 mt-1">
+                  <CheckCircle2 className="w-4 h-4 text-green-500" />
+                  <span className="text-xs text-gray-500 uppercase tracking-wide">Cliente Verificado</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* --- FOOTER --- */}
+      <footer id="contacto" className="bg-white border-t border-gray-100 pt-16 pb-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            
+            {/* Columna 1: Info */}
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <img src="/logo.png.jpg" alt="Racoo Petshop" className="w-8 h-8 rounded-full object-cover" />
+                <span className="text-lg font-bold text-[#D96C4A]">Racoo <span className="text-[#2D3A2F]">Petshop</span></span>
+              </div>
+              <p className="text-gray-600 mb-6">{currentLang.footer.desc}</p>
+              <div className="flex gap-4">
+                {/* Opcional: Puedes cambiar los # por los links de tus redes sociales */}
+                <a href="#" className="w-10 h-10 rounded-full bg-[#F3EBE1] flex items-center justify-center text-[#D96C4A] hover:bg-[#D96C4A] hover:text-white transition-colors">
+                  <Instagram className="w-5 h-5" />
+                </a>
+                <a href="#" className="w-10 h-10 rounded-full bg-[#F3EBE1] flex items-center justify-center text-[#D96C4A] hover:bg-[#D96C4A] hover:text-white transition-colors">
+                  <Facebook className="w-5 h-5" />
+                </a>
+              </div>
+            </div>
+
+            {/* Columna 2: Ubicación */}
+            <div>
+              <h4 className="text-lg font-bold mb-4">{currentLang.nav.contact}</h4>
+              <div className="space-y-4">
+                <p className="flex items-start gap-3 text-gray-600">
+                  <MapPin className="w-5 h-5 text-[#D96C4A] shrink-0" />
+                  <span>{currentLang.footer.location}</span>
+                </p>
+                <a 
+                  href={generateWhatsAppLink(lang === 'es' ? "¡Hola! Vengo de su página web." : "Hello! I'm visiting from your website.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 text-gray-600 hover:text-[#D96C4A] transition-colors"
+                >
+                  <MessageCircle className="w-5 h-5 text-[#D96C4A] shrink-0" />
+                  <span>WhatsApp: +{phoneNumber}</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Columna 3: Enlaces */}
+            <div>
+              <h4 className="text-lg font-bold mb-4">{currentLang.footer.links}</h4>
+              <ul className="space-y-2">
+                <li><a href="#inicio" className="text-gray-600 hover:text-[#D96C4A] transition-colors">{currentLang.nav.home}</a></li>
+                <li><a href="#catalogo" className="text-gray-600 hover:text-[#D96C4A] transition-colors">{currentLang.nav.catalog}</a></li>
+                <li><a href="#delicias" className="text-gray-600 hover:text-[#D96C4A] transition-colors">{currentLang.nav.bar}</a></li>
+              </ul>
+            </div>
+
+          </div>
+
+          {/* Copyright */}
+          <div className="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-gray-500 text-sm">
+              © {new Date().getFullYear()} Racoo Petshop. {currentLang.footer.rights}
+            </p>
+          </div>
+        </div>
+      </footer>
 
     </div>
   );
