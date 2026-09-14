@@ -141,7 +141,8 @@ export default function App() {
             {/* Header de la tarjeta */}
             <div className="flex justify-between items-center mb-4 px-2">
               <div className="flex items-center gap-3">
-                <img src="/logo.png" alt="Racoo" className="w-10 h-10 rounded-full border border-gray-100 object-cover" />
+                {/* AQUÍ ARREGLAMOS EL LOGO (línea ~118) */}
+                <img src="/logo.png.jpg" alt="Racoo" className="w-10 h-10 rounded-full border border-gray-100 object-cover" />
                 <div className="leading-tight">
                   <p className="font-bold text-sm">racoo_petshop</p>
                   <p className="text-xs text-gray-500">Golden Zone, Bucerías</p>
@@ -153,8 +154,8 @@ export default function App() {
             </div>
             
             {/* Imagen Principal */}
-            <div className="rounded-2xl overflow-hidden aspect-square bg-gray-100">
-              {/* AQUÍ VA TU FOTO PRINCIPAL */}
+            {/* AQUÍ ARREGLAMOS EL ASPECT RATIO a 3/4 (línea ~128) */}
+            <div className="rounded-2xl overflow-hidden aspect-[3/4] bg-gray-100">
               <img 
                 src="/hero-photo.jpg.webp" 
                 alt="Mascotas felices" 
