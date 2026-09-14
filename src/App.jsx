@@ -37,7 +37,7 @@ export default function App() {
       delicias: {
         title: "Delicias Bar a Granel",
         subtitle: "El favorito de Bucerías. Arma tu mix de premios 100% naturales, deshidratados y libres de conservadores artificiales. ¡Pagas solo lo que llevas!",
-        features: ["Camote y Manzana deshidratada", "Orejas y pulmón de cerdo", "Hígado de res premium", "Galletas artesanales"],
+        features: ["Traquea de res", "Pulmón de res", "Hígado de res premium", "Ternera", "Patas de pollo", "Carnza de tocino"],
         btnOrder: "¡Quiero armar mi Mix!"
       },
       reviews: {
@@ -80,7 +80,7 @@ export default function App() {
       delicias: {
         title: "Bulk Treats Bar",
         subtitle: "Bucerías' favorite! Build your mix of 100% natural, dehydrated treats free of artificial preservatives. Pay only for what you take!",
-        features: ["Dehydrated sweet potato & apple", "Pork ears and lung", "Premium beef liver", "Artisan pet cookies"],
+        features: ["Beef trachea", "Beef lung", "Premium beef liver", "Veal", "Chicken feet", "Bacon hide"],
         btnOrder: "I want to build my Mix!"
       },
       reviews: {
