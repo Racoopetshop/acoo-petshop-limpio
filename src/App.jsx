@@ -1,144 +1,170 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Heart, ShieldCheck, MapPin, Phone, Star, Menu, X, Globe } from 'lucide-react';
+import { MessageCircle, Sparkles, ArrowRight, Globe, Menu } from 'lucide-react';
 
 export default function App() {
+  // 1. ESTADO DEL IDIOMA
   const [lang, setLang] = useState('es');
-  const [menuOpen, setMenuOpen] = useState(false);
 
+  // 2. CONFIGURACIÓN DE WHATSAPP
+  const phoneNumber = "523221234567"; // <-- CAMBIA ESTO POR TU NÚMERO REAL CON CÓDIGO DE PAÍS
+  
+  const generateWhatsAppLink = (message) => {
+    return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  };
+
+  // 3. DICCIONARIO BILINGÜE
   const t = {
     es: {
-      heroTitle: "Todo para consentir a tu mejor amigo",
-      heroSubtitle: "Alimento premium, accesorios y estética canina en Bucerías.",
-      btnCatalog: "Ver Productos",
-      cat1Title: "Alimentación Premium",
-      cat1Desc: "Nutrición especializada y alimentos naturales para una vida saludable.",
-      cat2Title: "Accesorios y Juguetes",
-      cat2Desc: "Correas, arneses ergonómicos y juguetes interactivos.",
-      cat3Title: "Estética y Salud",
-      cat3Desc: "Shampoos naturales, cepillos y suplementos de bienestar.",
-      btnConsult: "Consultar por WhatsApp",
-      footerDesc: "Tu tienda de mascotas de confianza en Bucerías para nutrición, salud y bienestar."
+      nav: { home: "Inicio", catalog: "Catálogo", bar: "Delicias Bar", contact: "Contacto", order: "Hacer Pedido" },
+      hero: {
+        badge: "Petshop & Delicias Bar en Bucerías, Nayarit",
+        title1: "Bienestar, nutrición y",
+        title2: "amor para tu",
+        titleHighlight: "compañero de vida",
+        subtitle: "Alimentos holísticos, accesorios confortables y nuestro famoso Delicias Bar con premios 100% naturales a granel.",
+        btnCatalog: "Ver Catálogo",
+        btnBar: "Explorar Delicias Bar"
+      }
     },
     en: {
-      heroTitle: "Everything to pamper your best friend",
-      heroSubtitle: "Premium food, accessories, and pet grooming in Bucerias.",
-      btnCatalog: "View Products",
-      cat1Title: "Premium Nutrition",
-      cat1Desc: "Specialized nutrition and natural food for a healthy life.",
-      cat2Title: "Accessories & Toys",
-      cat2Desc: "Leashes, ergonomic harnesses, and interactive toys.",
-      cat3Title: "Grooming & Health",
-      cat3Desc: "Natural shampoos, brushes, and health supplements.",
-      btnConsult: "Inquire via WhatsApp",
-      footerDesc: "Your trusted pet shop in Bucerias for nutrition, wellness, and pampering your pets."
+      nav: { home: "Home", catalog: "Catalog", bar: "Treats Bar", contact: "Contact", order: "Order Now" },
+      hero: {
+        badge: "Petshop & Treats Bar in Bucerías, Nayarit",
+        title1: "Wellness, nutrition and",
+        title2: "love for your",
+        titleHighlight: "lifelong companion",
+        subtitle: "Holistic food, comfortable accessories and our famous Treats Bar with 100% natural bulk rewards.",
+        btnCatalog: "View Catalog",
+        btnBar: "Explore Treats Bar"
+      }
     }
-  }[lang];
+  };
 
-  const RESENAS = [
-    {
-      nombre: "WmWMARIANOWmW Delgado",
-      mascota: lang === 'es' ? "Cliente en Google Maps" : "Google Maps Reviewer",
-      comentario: lang === 'es' ? "¡Me encantó! La atención es increíble y la ubicación es súper accesible así como los precios! Lo mejor es que tienen descuentos." : "I loved it! The service is incredible and the location is super accessible as well as the prices! The best part is they have discounts.",
-      estrellas: 5
-    },
-    {
-      nombre: "Valeria M.",
-      mascota: lang === 'es' ? "Dueña de Bruno 🐶" : "Bruno's Owner 🐶",
-      comentario: lang === 'es' ? "Excelente atención y los premios del Delicias Bar le encantan a mi perrito. La mejor petshop de Bucerías." : "Great service and the Delicias Bar treats are my puppy's favorite. The best pet shop in Bucerias.",
-      estrellas: 5
-    },
-    {
-      nombre: "Sarah Jenkins",
-      mascota: lang === 'es' ? "Dueña de Luna 🐕" : "Luna's Owner 🐕",
-      comentario: lang === 'es' ? "¡Súper Pet Friendly! Me encanta pasar aquí durante nuestros paseos en la Zona Dorada. Los snacks naturales son de primera." : "Super Pet Friendly! Love coming here during our walks in the Golden Zone. The natural snacks are top quality.",
-      estrellas: 5
-    }
-  ];
+  const currentLang = t[lang];
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 font-sans">
-      <header className="bg-white shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-          <div className="flex items-center space-x-2">
-            <span className="text-2xl font-bold text-amber-600">Racoo Petshop</span>
-          </div>
-          <div className="flex items-center space-x-4">
-            <button 
-              onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
-              className="flex items-center space-x-1 text-sm bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-full transition"
-            >
-              <Globe size={16} />
-              <span className="uppercase font-semibold">{lang}</span>
-            </button>
-          </div>
+    // Fondo crema inspirado en tu diseño
+    <div className="min-h-screen bg-[#FCFAF8] font-sans text-[#2D3A2F]">
+      
+      {/* --- NAVBAR --- */}
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+        {/* Logo */}
+        <div className="flex items-center gap-3">
+          <img src="/logo.png" alt="Racoo Petshop" className="w-10 h-10 rounded-full object-cover shadow-sm bg-white" />
+          <span className="text-xl font-bold text-[#D96C4A]">Racoo <span className="text-[#2D3A2F]">Petshop</span></span>
         </div>
-      </header>
 
-      <section className="bg-amber-50 py-16 px-4 text-center">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl font-extrabold text-slate-900 mb-4">{t.heroTitle}</h1>
-          <p className="text-lg text-slate-600 mb-8">{t.heroSubtitle}</p>
-          <a 
-            href="https://wa.me/523220000000" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition inline-block"
-          >
-            {t.btnConsult}
+        {/* Enlaces de Navegación (Ocultos en móvil) */}
+        <div className="hidden md:flex items-center gap-8 font-medium text-sm">
+          <a href="#inicio" className="text-[#D96C4A] border-b-2 border-[#D96C4A] pb-1">{currentLang.nav.home}</a>
+          <a href="#catalogo" className="hover:text-[#D96C4A] transition-colors">{currentLang.nav.catalog}</a>
+          <a href="#delicias" className="flex items-center gap-1 hover:text-[#D96C4A] transition-colors">
+            <Sparkles className="w-4 h-4 text-[#D96C4A]" /> {currentLang.nav.bar}
           </a>
+          <a href="#contacto" className="hover:text-[#D96C4A] transition-colors">{currentLang.nav.contact}</a>
         </div>
-      </section>
 
-      <section className="max-w-7xl mx-auto px-4 py-16">
-        <div className="grid md:grid-cols-3 gap-8">
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <h3 className="text-xl font-bold mb-2 text-slate-900">{t.cat1Title}</h3>
-            <p className="text-slate-600">{t.cat1Desc}</p>
+        {/* Botones de Acción */}
+        <div className="flex items-center gap-4">
+          {/* Toggle de Idioma */}
+          <button 
+            onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
+            className="flex items-center gap-2 text-sm font-medium hover:bg-gray-100 p-2 rounded-full transition-colors"
+          >
+            <Globe className="w-5 h-5" />
+            <span>{lang === 'es' ? 'EN' : 'ES'}</span>
+          </button>
+
+          {/* Botón WhatsApp Principal */}
+          <a 
+            href={generateWhatsAppLink(lang === 'es' ? "¡Hola! Me gustaría hacer un pedido." : "Hello! I would like to place an order.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:flex items-center gap-2 bg-[#2D3A2F] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-black transition-colors shadow-md"
+          >
+            {currentLang.nav.order} <MessageCircle className="w-4 h-4" />
+          </a>
+
+          {/* Menú Móvil */}
+          <button className="md:hidden p-2">
+            <Menu className="w-6 h-6" />
+          </button>
+        </div>
+      </nav>
+
+      {/* --- HERO SECTION --- */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 flex flex-col md:flex-row items-center gap-12">
+        
+        {/* Columna Izquierda: Textos y Botones */}
+        <div className="flex-1 space-y-8">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 bg-[#F3EBE1] text-[#7A6B5D] px-4 py-1.5 rounded-full text-sm font-medium">
+            <span className="w-2 h-2 rounded-full bg-[#D96C4A]"></span>
+            {currentLang.hero.badge}
           </div>
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <h3 className="text-xl font-bold mb-2 text-slate-900">{t.cat2Title}</h3>
-            <p className="text-slate-600">{t.cat2Desc}</p>
-          </div>
-          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-            <h3 className="text-xl font-bold mb-2 text-slate-900">{t.cat3Title}</h3>
-            <p className="text-slate-600">{t.cat3Desc}</p>
+
+          {/* Título Principal */}
+          <h1 className="text-5xl md:text-6xl font-extrabold leading-tight tracking-tight">
+            {currentLang.hero.title1} <br />
+            {currentLang.hero.title2} <br />
+            <span className="text-[#D96C4A]">{currentLang.hero.titleHighlight}</span>
+          </h1>
+
+          {/* Subtítulo */}
+          <p className="text-lg text-gray-600 max-w-lg leading-relaxed">
+            {currentLang.hero.subtitle}
+          </p>
+
+          {/* Botones Hero */}
+          <div className="flex flex-wrap items-center gap-4 pt-2">
+            <a 
+              href="#catalogo"
+              className="flex items-center gap-2 bg-[#D96C4A] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#c25e3f] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            >
+              {currentLang.hero.btnCatalog} <ArrowRight className="w-5 h-5" />
+            </a>
+            
+            <a 
+              href={generateWhatsAppLink(lang === 'es' ? "Hola, quiero saber más sobre el Delicias Bar." : "Hello, I want to know more about the Treats Bar.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 bg-transparent border-2 border-[#E8DCCB] text-[#D96C4A] px-6 py-3 rounded-xl font-semibold hover:bg-[#F3EBE1] transition-colors"
+            >
+              <Sparkles className="w-5 h-5" /> {currentLang.hero.btnBar}
+            </a>
           </div>
         </div>
-      </section>
 
-      <section className="bg-white py-16 px-4 border-t border-slate-100">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12 text-slate-900">
-            {lang === 'es' ? 'Lo que dicen nuestros clientes' : 'What our customers say'}
-          </h2>
-          <div className="grid md:grid-cols-3 gap-8">
-            {RESENAS.map((res, index) => (
-              <div key={index} className="bg-slate-50 p-6 rounded-xl border border-slate-100 flex flex-col justify-between">
-                <div>
-                  <div className="flex text-amber-500 mb-4">
-                    {[...Array(res.estrellas)].map((_, i) => (
-                      <Star key={i} size={18} fill="currentColor" />
-                    ))}
-                  </div>
-                  <p className="text-slate-700 italic mb-4">"{res.comentario}"</p>
-                </div>
-                <div>
-                  <h4 className="font-bold text-slate-900">{res.nombre}</h4>
-                  <span className="text-sm text-slate-500">{res.mascota}</span>
+        {/* Columna Derecha: Tarjeta estilo Instagram */}
+        <div className="flex-1 w-full max-w-md">
+          <div className="bg-white p-4 rounded-3xl shadow-xl shadow-orange-900/5 border border-gray-100">
+            {/* Header de la tarjeta */}
+            <div className="flex justify-between items-center mb-4 px-2">
+              <div className="flex items-center gap-3">
+                <img src="/logo.png" alt="Racoo" className="w-10 h-10 rounded-full border border-gray-100 object-cover" />
+                <div className="leading-tight">
+                  <p className="font-bold text-sm">racoo_petshop</p>
+                  <p className="text-xs text-gray-500">Golden Zone, Bucerías</p>
                 </div>
               </div>
-            ))}
+              <span className="bg-gray-100 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1">
+                Pet Friendly 🐾
+              </span>
+            </div>
+            
+            {/* Imagen Principal */}
+            <div className="rounded-2xl overflow-hidden aspect-square bg-gray-100">
+              {/* AQUÍ VA TU FOTO PRINCIPAL */}
+              <img 
+                src="/hero-photo.jpg" 
+                alt="Mascotas felices" 
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+              />
+            </div>
           </div>
         </div>
-      </section>
 
-      <footer className="bg-slate-900 text-slate-300 py-12 px-4 text-center">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-2xl font-bold text-white mb-2">Racoo Petshop</h2>
-          <p className="max-w-md mx-auto text-slate-400 mb-6">{t.footerDesc}</p>
-          <p className="text-sm text-slate-500">© {new Date().getFullYear()} Racoo Petshop. Bucerías, Nayarit.</p>
-        </div>
-      </footer>
+      </main>
     </div>
   );
 }
