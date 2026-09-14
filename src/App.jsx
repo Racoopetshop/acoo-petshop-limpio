@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
-// Agregamos iconos para el footer y reseñas: MapPin, Instagram, Facebook
-import { MessageCircle, Sparkles, ArrowRight, Globe, Menu, ShoppingBag, Bone, Heart, Star, CheckCircle2, MapPin, Instagram, Facebook } from 'lucide-react';
+import { MessageCircle, Sparkles, ArrowRight, Globe, Menu, ShoppingBag, Bone, Heart, Star, CheckCircle2, MapPin } from 'lucide-react';
 
 export default function App() {
   const [lang, setLang] = useState('es');
 
   // CONFIGURACIÓN DE WHATSAPP
-  const phoneNumber = "523221234567"; // <-- NO OLVIDES PONER TU NÚMERO
+  const phoneNumber = "3223780668"; // <-- CAMBIA ESTO POR TU NÚMERO
   
   const generateWhatsAppLink = (message) => {
     return `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
   };
 
-  // DICCIONARIO BILINGÜE COMPLETO
+  // DICCIONARIO BILINGÜE
   const t = {
     es: {
       nav: { home: "Inicio", catalog: "Catálogo", bar: "Delicias Bar", contact: "Contacto", order: "Hacer Pedido" },
@@ -339,13 +338,32 @@ export default function App() {
                 <span className="text-lg font-bold text-[#D96C4A]">Racoo <span className="text-[#2D3A2F]">Petshop</span></span>
               </div>
               <p className="text-gray-600 mb-6">{currentLang.footer.desc}</p>
+              
               <div className="flex gap-4">
-                {/* Opcional: Puedes cambiar los # por los links de tus redes sociales */}
-                <a href="#" className="w-10 h-10 rounded-full bg-[#F3EBE1] flex items-center justify-center text-[#D96C4A] hover:bg-[#D96C4A] hover:text-white transition-colors">
-                  <Instagram className="w-5 h-5" />
+                {/* BOTÓN DE INSTAGRAM CON SVG */}
+                <a 
+                  href="https://instagram.com/racoo_petshop" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-10 h-10 rounded-full bg-[#F3EBE1] flex items-center justify-center text-[#D96C4A] hover:bg-[#D96C4A] hover:text-white transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                  </svg>
                 </a>
-                <a href="#" className="w-10 h-10 rounded-full bg-[#F3EBE1] flex items-center justify-center text-[#D96C4A] hover:bg-[#D96C4A] hover:text-white transition-colors">
-                  <Facebook className="w-5 h-5" />
+                
+                {/* BOTÓN DE FACEBOOK CON SVG */}
+                <a 
+                  href="https://www.facebook.com/people/Racoo-Petshop/pfbid02nbNiCUhfyR6W1AViMKFfiREh7cc1qbJKcj5SRm8SzxZwinav9FB9BsAxXw3BANKnl/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="w-10 h-10 rounded-full bg-[#F3EBE1] flex items-center justify-center text-[#D96C4A] hover:bg-[#D96C4A] hover:text-white transition-colors"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                  </svg>
                 </a>
               </div>
             </div>
