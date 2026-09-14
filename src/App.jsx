@@ -50,7 +50,7 @@ export default function App() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <img src="/logo.png" alt="Racoo Petshop" className="w-10 h-10 rounded-full object-cover shadow-sm bg-white" />
+          <img src="/logo.png.jpg" alt="Racoo Petshop" className="w-10 h-10 rounded-full object-cover shadow-sm bg-white" />
           <span className="text-xl font-bold text-[#D96C4A]">Racoo <span className="text-[#2D3A2F]">Petshop</span></span>
         </div>
 
@@ -156,7 +156,7 @@ export default function App() {
             <div className="rounded-2xl overflow-hidden aspect-square bg-gray-100">
               {/* AQUÍ VA TU FOTO PRINCIPAL */}
               <img 
-                src="/hero-photo.jpg" 
+                src="/hero-photo.jpg.webp" 
                 alt="Mascotas felices" 
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
